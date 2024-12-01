@@ -1,189 +1,240 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<style type="text/css">
 		*{
-  margin: 0px;
-  padding: 0px;
-  transition: .3s;
-}
+		  margin: 0px;
+		  padding: 0px;
+		  transition: .3s;
+		}
 
-.container{
-  width: 100%;
-  height: 100vh;
-  background-image: url(https://i.ibb.co/LQM0MBg/ipl.webp);
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+		.container{
+		  width: 100%;
+		  height: 100vh;
+		  background-image: url(https://i.ibb.co/LQM0MBg/ipl.webp);
+		  background-size: cover;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  flex-direction: column; /* Make container vertical */
+		}
 
-.s_bode{
-  width: 700px;
-  padding: 50px;
-  display: flex;
-  position:relative;
-  z-index: 1000;
-  border-radius: 20px;
-  background-image: url(https://i.ibb.co/kc2pD64/5846495.jpg);
-  background-position: 0 -289px;
-  background-size: cover;
-  overflow: hidden;
-}
-
-
-.s_bode:after{
-  content: '';
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color:rgba(0, 0, 0, .8);
-  z-index: -2;
-  border-radius: 20px;
-}
+		.s_bode{
+		  width: 700px;
+		  padding: 50px;
+		  display: flex;
+		  position:relative;
+		  z-index: 1000;
+		  border-radius: 20px;
+		  background-image: url(https://i.ibb.co/kc2pD64/5846495.jpg);
+		  background-position: 0 -289px;
+		  background-size: cover;
+		  overflow: hidden;
+		  margin-bottom: 20px; /* Space between div and button */
+		}
 
 
-.s_bode:before{
-  content: '';
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: -47%;
-  background-color:rgba(255, 255, 255, .2);
-  z-index: -1;
-  transform: skewX(-10deg);
-}
-
-.s_bode img{
-  height: 100px;
-  width: 100px;
-}
-
-.left_section{
-  flex-grow: 5;
-   display: flex;
-   flex-direction: column;
-  align-items: center;
-}
-
-.mid_section{
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 26px;
-}
-
-.right_section{
-  flex-grow:2;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-
-}
-
-.s_bode h2{
-  margin-top: 10px;
-  color: white;
-  font-size: 26px;
-  font-weight:bold;
-}
+		.s_bode:after{
+		  content: '';
+		  height: 100%;
+		  width: 100%;
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  background-color:rgba(0, 0, 0, .8);
+		  z-index: -2;
+		  border-radius: 20px;
+		}
 
 
-.s_bode p{
- margin-top:5px;
- font-weight:bold;
- font-size: 14px;
- color: #fff;
-}
+		.s_bode:before{
+		  content: '';
+		  height: 100%;
+		  width: 100%;
+		  position: absolute;
+		  top: 0;
+		  left: -47%;
+		  background-color:rgba(255, 255, 255, .2);
+		  z-index: -1;
+		  transform: skewX(-10deg);
+		}
+
+		.s_bode img{
+		  height: 100px;
+		  width: 100px;
+		}
+
+		.left_section{
+		  flex-grow: 5;
+		   display: flex;
+		   flex-direction: column;
+		  align-items: center;
+		}
+
+		.mid_section{
+		  flex-grow: 1;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  color: white;
+		  font-size: 26px;
+		}
+
+		.right_section{
+		  flex-grow:2;
+		   display: flex;
+		   flex-direction: column;
+		   align-items: center;
+		}
+
+		.s_bode h2{
+		  margin-top: 10px;
+		  color: white;
+		  font-size: 26px;
+		  font-weight:bold;
+		}
 
 
-@media screen and (max-width: 850px) {
-    .s_bode{
-      width: 500px;
-       background-position: 0 -209px;
-    }
+		.s_bode p{
+		 margin-top:5px;
+		 font-weight:bold;
+		 font-size: 14px;
+		 color: #fff;
+		}
 
-    .s_bode img{
-      width: 80px;
-      height: 80px
-    }
+		.update-btn {
+			margin-top: 20px;
+			padding: 10px 20px;
+			background-color: #007bff;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			width: 200px; /* Set a fixed width */
+			margin-bottom: 20px; /* Add margin below button */
+		}
 
-    .s_bode h2{
-     font-size: 18px;
-    }
-}
+		.update-btn:hover {
+			background-color: #0056b3;
+		}
 
+		@media screen and (max-width: 850px) {
+		    .s_bode{
+		      width: 500px;
+		       background-position: 0 -209px;
+		    }
 
-@media screen and (max-width: 640px) {
-    .s_bode{
-      width: 400px;
-      padding: 10px;
-      background-position: 0 -190px;
-    }
+		    .s_bode img{
+		      width: 80px;
+		      height: 80px
+		    }
 
-    .s_bode img{
-      width: 50px;
-      height: 50px
-    }
+		    .s_bode h2{
+		     font-size: 18px;
+		    }
 
-    .s_bode h2{
-     font-size: 14px;
-    }
-    .s_bode h1{
-     font-size: 18px;
-    }
+		    .update-btn {
+		     width: 150px;
+		    }
+		}
 
-    .s_bode p{
-     font-size: 10px;
-    }
-}
+		@media screen and (max-width: 640px) {
+		    .s_bode{
+		      width: 400px;
+		      padding: 10px;
+		      background-position: 0 -190px;
+		    }
 
-@media screen and (max-width: 450px) {
-    .s_bode{
-      width: 320px;
-      padding:10px;
-       background-position: 0 -90px;
-    }
+		    .s_bode img{
+		      width: 50px;
+		      height: 50px
+		    }
 
-    .s_bode img{
-      width: 50px;
-      height: 50px
-    }
+		    .s_bode h2{
+		     font-size: 14px;
+		    }
+		    .s_bode h1{
+		     font-size: 18px;
+		    }
 
-    .s_bode h2{
-     font-size: 14px;
-    }
-    .s_bode h1{
-     font-size: 18px;
-    }
-}
+		    .s_bode p{
+		     font-size: 10px;
+		    }
+
+		    .update-btn {
+		     width: 120px;
+		    }
+		}
+
+		@media screen and (max-width: 450px) {
+		    .s_bode{
+		      width: 320px;
+		      padding:10px;
+		       background-position: 0 -90px;
+		    }
+
+		    .s_bode img{
+		      width: 50px;
+		      height: 50px
+		    }
+
+		    .s_bode h2{
+		     font-size: 14px;
+		    }
+		    .s_bode h1{
+		     font-size: 18px;
+		    }
+
+		    .update-btn {
+		     width: 100px;
+		    }
+		}
 	</style>
 </head>
 <body>
-	
   <div class="container">
-  	 <div class="s_bode">
-  	 	<div class="left_section">
-  	 	        <img src="https://i.ibb.co/Xjkr4ph/LRM-EXPORT-58507098735862-20200128-213440328.jpg" alt="" style="border-radius: 50%;object-fit: cover;">
-  	 	        <h2>MANI</h2>
-  	 	</div>
+    <div class="s_bode">
+      <div class="left_section">
+        <img src="https://i.ibb.co/Xjkr4ph/LRM-EXPORT-58507098735862-20200128-213440328.jpg" alt="" style="border-radius: 50%;object-fit: cover;">
+        <h2 id="player1">MANI</h2>
+      </div>
 
-  	 	<div class="mid_section">
-  	 		<h1>2 - 2</h1>
-  	 	</div>
-  	 	<div class="right_section">
-  	 		<img src="https://i.ibb.co/vq0Gw4q/20210808025231-IMG-6720-01-01.jpg" alt="" style="border-radius: 50%;object-fit: cover;">
-  	 		<h2>Bhargav Reddy</h2>
-  	 	</div>
-  	 </div>
+      <div class="mid_section">
+        <!-- The score will be updated manually here -->
+        <h1 id="score">2 - 2</h1>
+      </div>
+      <div class="right_section">
+        <img src="https://i.ibb.co/vq0Gw4q/20210808025231-IMG-6720-01-01.jpg" alt="" style="border-radius: 50%;object-fit: cover;">
+        <h2 id="player2">Bhargav Reddy</h2>
+      </div>
+    </div>
 
+    <button class="update-btn" onclick="updateScore()">Update Score</button> <!-- Button placed below the content -->
   </div>
+
   <div>
-  	<iframe src="https://widget.crictimes.org/" style="width:100%;min-height: 450px;" frameborder="0" scrolling="yes"></iframe>
-  </div>	
+    <iframe src="https://widget.crictimes.org/" style="width:100%;min-height: 450px;" frameborder="0" scrolling="yes"></iframe>
+  </div>  
+
+  <script>
+    function updateScore() {
+      // Prompt for current score and player names
+      let player1 = prompt("Enter Player 1's name:", document.getElementById('player1').innerText);
+      let score1 = prompt("Enter score for " + player1 + ":", "0");
+      
+      let player2 = prompt("Enter Player 2's name:", document.getElementById('player2').innerText);
+      let score2 = prompt("Enter score for " + player2 + ":", "0");
+
+      // Validate inputs and update the score
+      if (player1 && score1 && player2 && score2) {
+        document.getElementById('player1').innerText = player1;
+        document.getElementById('player2').innerText = player2;
+        document.getElementById('score').innerText = score1 + " - " + score2;
+      } else {
+        alert("Invalid input. Please enter valid names and scores.");
+      }
+    }
+  </script>
 </body>
 </html>
