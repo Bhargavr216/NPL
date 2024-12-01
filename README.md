@@ -8,6 +8,12 @@ This project is a simple, responsive cricket scoreboard webpage displaying the s
 - **Live Cricket Score**: Includes an embedded widget that shows real-time cricket match updates.
 - **Attractive Background**: The page has a visually appealing background image with overlay effects that make the design stand out.
 
+## Screenshots
+![image](https://github.com/user-attachments/assets/9598fd5d-3cd1-4f02-aa5b-eeff89102a52)
+![image](https://github.com/user-attachments/assets/95731af0-97cb-49bd-8e1b-4b5dc2a6e5da)
+![image](https://github.com/user-attachments/assets/c4798703-86ef-4d37-bb40-595f9302996f)
+
+
 ## Layout
 - The webpage is divided into three sections: left section (for "MANI"), middle section (for the score), and right section (for "Bhargav Reddy").
 - The page features a central container with images and text arranged in a visually balanced layout.
