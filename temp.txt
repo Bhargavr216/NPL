@@ -1,158 +1,66 @@
-package SeleniumAutomation.SeleniumAutomation;
+// ====== Node Screenshot ======
+Thread.sleep(5000);
+File NsrcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+File NdestFile = new File(
+    System.getProperty("user.dir") + "/src/test/java/Results/NodeStatus_" + timestp + ".jpg"
+);
+NdestFile.getParentFile().mkdirs();
+FileUtils.copyFile(NsrcFile, NdestFile);
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Date;
+// ====== Troubleshoot ======
+WebElement Tshoot = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("//a[contains(text(),'Troubleshoot')]")
+));
+Tshoot.click();
+Thread.sleep(3000);
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.*;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+// Switch into frame
+driver.switchTo().frame("basefrm");
 
-/**
- * Unit test for simple App.
- */
-public class AppTest {
-	public static void main(String[] args) throws InterruptedException, IOException {
-		System.setProperty("webdriver.edge.driver", "src/test/java/msedgedriver.exe");
-		WebDriver driver = new EdgeDriver();
-		driver.manage().window().maximize();
+// ====== DB Usage ======
+WebElement DbUsage = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("//a[contains(text(),'DB Usage')]")
+));
+DbUsage.click();
 
-		driver.get("https://gis.mufgbank.com:10001/filegateway/home.do#login");
+// Handle alert
+Thread.sleep(3000);
+Alert alert = driver.switchTo().alert();
+alert.accept();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-//		System.out.println("BHARGAV REDDY");
-		WebElement UserName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("isc_J")));
-		UserName.sendKeys("AN361148");
-		WebElement password = driver.findElement(By.id("isc_N"));
-		password.sendKeys("GBftzr/\\Jh3X.ds1");
-		WebElement SignIn = driver.findElement(By.id("isc_Z"));
-		SignIn.click();
-		WebElement Tools = wait.until(ExpectedConditions.elementToBeClickable(By.id("isc_1X")));
-		Tools.click();
-		WebElement ActSnap = driver
-				.findElement(By.xpath("/html/body/div[4]/div/div/div/div/table/tbody/tr[2]/td[2]/div"));
-		ActSnap.click();
-		WebElement ActSnapTemp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("isc_8G")));
+// Switch to the new tab (always last one)
+ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
+driver.switchTo().window(tabs2.get(tabs2.size() - 1));
 
-		Thread.sleep(3000);
+File DNsrcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+File DNdestFile = new File(
+    System.getProperty("user.dir") + "/src/test/java/Results/DBUsage_" + timestp + ".jpg"
+);
+DNdestFile.getParentFile().mkdirs();
+FileUtils.copyFile(DNsrcFile, DNdestFile);
 
-		String timestp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+driver.close();  // close DBUsage tab
 
-		File destFile = new File(
-				(System.getProperty("user.dir")) + "/src/test/java/Results/ActivitySnapShot_" + timestp + ".jpg");
+// Back to dashboard tab
+driver.switchTo().window(tabs.get(1));
 
-		destFile.getParentFile().mkdirs();
-		FileUtils.copyFile(srcFile, destFile);
+// ====== Business Usage ======
+// Important: reset to defaultContent if you’re still in a frame
+driver.switchTo().defaultContent();
 
-		WebElement ASClose = wait.until(ExpectedConditions.elementToBeClickable(By.id("isc_8L")));
-		ASClose.click();
+WebElement BUsage = wait.until(ExpectedConditions.elementToBeClickable(
+    By.xpath("//a[contains(text(),'Business Usage')]")
+));
+BUsage.click();
 
-		((JavascriptExecutor) driver).executeScript("window.open()");
+// Switch to last tab (Business Usage opens in new tab)
+ArrayList<String> tabs3 = new ArrayList<>(driver.getWindowHandles());
+driver.switchTo().window(tabs3.get(tabs3.size() - 1));
 
-		ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-		driver.switchTo().window(tabs.get(1));
-		driver.get("https://gis.mufgbank.com:10001/dashboard/");
-		Thread.sleep(3000);
-
-		WebElement Operations = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("/html/body/table/tbody/tr[4]/td[1]/table/tbody/tr[2]/td/div[2]/ul/li[5]/a")));
-		Operations.click();
-
-		WebElement SysT = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("/html/body/table/tbody/tr[4]/td[1]/table/tbody/tr[2]/td/div[2]/ul/li[5]/ul/li[1]/a")));
-		SysT.click();
-
-		WebElement Clust = wait.until(ExpectedConditions.elementToBeClickable(By
-				.xpath("/html/body/table/tbody/tr[4]/td[1]/table/tbody/tr[2]/td/div[2]/ul/li[5]/ul/li[1]/ul/li[5]/a")));
-		Clust.click();
-
-		WebElement Node = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"/html/body/table/tbody/tr[4]/td[1]/table/tbody/tr[2]/td/div[2]/ul/li[5]/ul/li[1]/ul/li[5]/ul/li/a")));
-		Node.click();
-
-		Thread.sleep(5000);
-
-		File NsrcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-		File NdestFile = new File(
-				(System.getProperty("user.dir")) + "/src/test/java/Results/NodeStatus_" + timestp + ".jpg");
-
-		destFile.getParentFile().mkdirs();
-		FileUtils.copyFile(NsrcFile, NdestFile);
-
-		WebElement Tshoot = wait.until(ExpectedConditions.elementToBeClickable(By
-				.xpath("/html/body/table/tbody/tr[4]/td[1]/table/tbody/tr[2]/td/div[2]/ul/li[5]/ul/li[1]/ul/li[1]/a")));
-		Tshoot.click();
-
-		Thread.sleep(3000);
-
-		driver.switchTo().frame("basefrm");
-
-		WebElement DbUsage = driver.findElement(By.xpath(
-				"/html/body/table/tbody/tr[1]/td[1]/table/tbody/tr[2]/td[2]/table/tbody/tr/td/table/tbody/tr[5]/td/table/tbody/tr[3]/td/table/tbody/tr[6]/td[2]/a"));
-		DbUsage.click();
-
-		Thread.sleep(3000);
-		Alert alert = driver.switchTo().alert();
-		alert.accept();
-
-		Thread.sleep(5000);
-
-		String jHref = DbUsage.getAttribute("href");
-		String url = jHref.replaceAll("javascript:dbDashBoardWin\\('(.+)'\\)", "$1");
-//		((JavascriptExecutor) driver).executeScript("window.open(arguments[0],'_blank');", url);
-		ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
-		driver.switchTo().window(tabs2.get(2));
-
-		File DNsrcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-		File DNdestFile = new File(
-				(System.getProperty("user.dir")) + "/src/test/java/Results/DBUsage_" + timestp + ".jpg");
-
-		DNdestFile.getParentFile().mkdirs();
-		FileUtils.copyFile(DNsrcFile, DNdestFile);
-		
-		driver.close();
-		
-		driver.switchTo().window(tabs.get(1));
-		WebElement BUsage = driver.findElement(By.xpath(
-				"/html/body/table/tbody/tr[1]/td[1]/table/tbody/tr[2]/td[2]/table/tbody/tr/td/table/tbody/tr[5]/td/table/tbody/tr[3]/td/table/tbody/tr[8]/td[2]/table/tbody/tr/td/a"));
-		BUsage.click();
-
-		Thread.sleep(5000);
-
-		String bHref = BUsage.getAttribute("href");
-		String burl = bHref.replaceAll("javascript:dbDashBoardWin\\('(.+)'\\)", "$1");
-//		((JavascriptExecutor) driver).executeScript("window.open(arguments[0],'_blank');", url);
-		ArrayList<String> tabs3 = new ArrayList<>(driver.getWindowHandles());
-		driver.switchTo().window(tabs3.get(2));
-
-		File BUsrcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-		File BUdestFile = new File(
-				(System.getProperty("user.dir")) + "/src/test/java/Results/BussinessUsage_" + timestp + ".jpg");
-
-		destFile.getParentFile().mkdirs();
-		FileUtils.copyFile(DNsrcFile, DNdestFile);
-		
-		
-
-//		((JavascriptExecutor) driver).executeScript("window.open()");
-//		ArrayList<String> tabs2 = new ArrayList<>(driver.getWindowHandles());
-//		driver.switchTo().window(tabs2.get(2));
-//		driver.get("https://gis.mufgbank.com:10001/dashboard/Page?next=page.nodeinfo&securetoken=1758352600148node0gpx584dp9g0w1fbckyotcqds511170");
-
-//		
-	}
-}
+Thread.sleep(3000);
+File BUsrcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+File BUdestFile = new File(
+    System.getProperty("user.dir") + "/src/test/java/Results/BusinessUsage_" + timestp + ".jpg"
+);
+BUdestFile.getParentFile().mkdirs();
+FileUtils.copyFile(BUsrcFile, BUdestFile);
